@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 /*
   Homework 02 - Calculator App - Myla Newby
-    Implement a UI w numbers [0-9], arithmetic operators (+ - * /) and display area
-      use widgets like container, column, row, flatbutton/inkwell
-    Enable add/sub/mult/div -> display in display area
-    Handle calculations w 2 operands and 1 operator (aka _ + _)
-    Implement a "clear" button 
-    Handle edge cases like dividing w 0 
+    XImplement a UI w numbers [0-9], arithmetic operators (+ - * /) and display area
+    Use widgets like Xcontainer, Xcolumn, Xrow, flatbutton/inkwell
+    XEnable add/sub/mult/div -> display in display area
+    XHandle calculations w 2 operands and 1 operator (aka _ + _)
+    XImplement a "clear" button 
+    XHandle edge cases like dividing w 0 
     Submit apk, main.dart, and word doc = rationale behind implem (+challenges) w github link
-
-    ______
-    7 8 9 /
-    4 5 6 * 
-    1 2 3 - 
-    C   = +
  */
 
 void main() {
@@ -150,9 +144,26 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // Displays the current equation
-            Text(
-              _equation
+            Container(
+              width: 400,
+              height: 100,
+              padding: EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 218, 192, 238),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              margin: EdgeInsets.all(10),
+              child: 
+                Text(
+                  _equation,
+                  style: 
+                    TextStyle(
+                      color: Colors.purple,
+                      fontSize: 18, 
+                      ),
+                ),
             ),
+            //Individual rows set for the buttons 
             // 7 8 9 / Row
             Row( 
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -219,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            // C _ = + Row
+            // C(clear) = + Row
             Row( 
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -227,11 +238,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('C'),
                   onPressed: () => _clearButton(),
                 ),
-                ElevatedButton(
-                  child: Text('='), 
-                  onPressed: () => _solveEquation(),
-                  style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all(Size(165, 40)),
+                InkWell(
+                  onTap: () => _solveEquation(),
+                  child: Container(
+                    width: 165,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 218, 192, 238),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "=",
+                        style: TextStyle(
+                          color: Colors.purple,
+                          fontSize: 30,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 ElevatedButton(
@@ -242,10 +266,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _clearButton,
-        tooltip: 'Clear',
       ),
     );
   }
