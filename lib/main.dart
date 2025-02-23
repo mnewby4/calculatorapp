@@ -103,18 +103,13 @@ class _MyHomePageState extends State<MyHomePage> {
   // Sets the _equation operand, which displays to the screen
   _setEquation() {
     setState(() {
-      // Prevents displaying "null" and displays nothing instead
-      String first = _firstNum ?? '';
-      String second = _secondNum ?? '';
-      String operator = _operator ?? '';
-
       // Handles displaying each equation part separately
       if (_secondNum != null) {
-        _equation = '$first $operator $second';
+        _equation = '$_firstNum $_operator $_secondNum';
       } else if (_operator != null) {
-        _equation = '$first $operator';
+        _equation = '$_firstNum $_operator';
       } else if (_firstNum != null) {
-        _equation = first;
+        _equation = _firstNum!;
       } else {
         _equation = "";
       }
