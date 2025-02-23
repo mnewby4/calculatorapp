@@ -173,9 +173,70 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('÷'),
                   onPressed: () => _setOperator('/'),
                 ),
+              ],
+            ),
+            // 4 5 6 * Row
+            Row( 
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  child: Text('4'),
+                  onPressed: () => _setNumber('4'),
+                ),
+                ElevatedButton(
+                  child: Text('5'),
+                  onPressed: () => _setNumber('5'),
+                ),
+                ElevatedButton(
+                  child: Text('6'),
+                  onPressed: () => _setNumber('6'),
+                ),
+                ElevatedButton(
+                  child: Text('×'),
+                  onPressed: () => _setOperator('*'),
+                ),
+              ],
+            ),
+            // 1 2 3 - Row
+            Row( 
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  child: Text('1'),
+                  onPressed: () => _setNumber('1'),
+                ),
+                ElevatedButton(
+                  child: Text('2'),
+                  onPressed: () => _setNumber('2'),
+                ),
+                ElevatedButton(
+                  child: Text('3'),
+                  onPressed: () => _setNumber('3'),
+                ),
+                ElevatedButton(
+                  child: Text('-'),
+                  onPressed: () => _setOperator('-'),
+                ),
+              ],
+            ),
+            // C _ = + Row
+            Row( 
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  child: Text('C'),
+                  onPressed: () => _clearButton(),
+                ),
                 ElevatedButton(
                   child: Text('='), 
                   onPressed: () => _solveEquation(),
+                  style: ButtonStyle(
+                    minimumSize: WidgetStateProperty.all(Size(165, 40)),
+                  ),
+                ),
+                ElevatedButton(
+                  child: Text('+'),
+                  onPressed: () => _setOperator('+'),
                 ),
               ],
             ),
