@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Calculator App'),
+      home: const MyHomePage(title: 'My Calculator App'),
     );
   }
 }
@@ -48,9 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
   String? _secondNum;
   String? _operator;
   String? _equation;
+  int _result = 0;
 
   _setNumber(String num) {
     setState( () {
+      // Able to add numbers to _firstNum if the operator isn't set
       if (_operator != null) {
         _secondNum != null ? _secondNum = '$_secondNum$num' : _secondNum = num;
       } else {
@@ -72,11 +74,32 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }*/
 
+  _solveEquation() {
+    setState(() {
+      if (_firstNum != null && _operator != null && _secondNum != null) {
+        int first = int.tryParse(_firstNum!) ?? 0;
+        int second = int.tryParse(_secondNum!) ?? 0;
+        if (_operator! == '+') {
+          _result = first + second;
+        } else if (_operator! == '-') {
+          _result = first - second;
+        } else if (_operator! == '*') {
+          _result = first * second;
+        } else if (_operator! == '/' && second !=0) {
+          _result = first ~/ second;
+        }
+      } else {
+        _result = 1;
+      }
+    });
+  }
+
   void _clearButton() {
     setState(() {
       _firstNum = null;
       _secondNum = null;
       _operator = null;
+      _result = 0;
     });
   }
 
@@ -100,6 +123,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               _secondNum ?? ''
             ),
+            Text(
+              _result.toString()
+            ),
             Row( 
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -118,6 +144,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ElevatedButton(
                   child: Text('÷'),
                   onPressed: () => _setOperator('/'),
+                ),
+                ElevatedButton(
+                  child: Text('='), 
+                  onPressed: () => _solveEquation(),
                 ),
               ],
             ),
